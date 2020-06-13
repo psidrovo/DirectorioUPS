@@ -17,7 +17,8 @@ public class TelefonoVista extends javax.swing.JFrame {
     
     private ListaTelefonoVista lisTelefono;
     private static ControladorTelefono controladorTelefono;
-
+    private Telefono tlf = new Telefono();
+    
     public TelefonoVista(ControladorTelefono ctrlTelefono) {
         controladorTelefono=ctrlTelefono;
         initComponents();
@@ -46,7 +47,7 @@ public class TelefonoVista extends javax.swing.JFrame {
         txtOperadora = new javax.swing.JTextField();
         txtTipo = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("TELEFONO");
 
         jLabel1.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
@@ -185,8 +186,7 @@ public class TelefonoVista extends javax.swing.JFrame {
 
     private void btCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCrearActionPerformed
         // TODO add your handling code here:
-        if (!txtCodigo.equals("") && !txtNumero.equals("") && !txtOperadora.equals("") && !txtTipo.equals("")) {
-            Telefono tlf = new Telefono();
+        if (!txtCodigo.equals("") && !txtNumero.equals("") && !txtOperadora.equals("") && !txtTipo.equals("")) {            
             tlf.setCodigo(Integer.valueOf(txtCodigo.getText()));
             tlf.setNumero(txtNumero.getText());
             tlf.setOperadora(txtOperadora.getText());

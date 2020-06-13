@@ -41,10 +41,9 @@ public class ControladorTelefono {
      * 
      * @return 
      */
-    public int crearNuevoTelefono(Telefono tlf) {
+    public void crearNuevoTelefono(Telefono tlf) {
         telefono = tlf;
         TDao.create(telefono);
-        return telefono.getCodigo();
     }
 
     /**

@@ -24,6 +24,7 @@ public class ListaTelefonoVista extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(this);
         this.setResizable(false);
+        
         List<Telefono> tlf = controladorTelefono.verTelefonos();
         String imp[] = new String[tlf.size()];
         int i = 0;
@@ -45,7 +46,7 @@ public class ListaTelefonoVista extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         lstTelefonos = new javax.swing.JList<>();
-        jButton1 = new javax.swing.JButton();
+        btRegresar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("LISTA DE TELEFONOS");
@@ -57,11 +58,11 @@ public class ListaTelefonoVista extends javax.swing.JFrame {
         lstTelefonos.setMinimumSize(new java.awt.Dimension(278, 250));
         jScrollPane1.setViewportView(lstTelefonos);
 
-        jButton1.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
-        jButton1.setText("REGRESAR");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btRegresar.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        btRegresar.setText("REGRESAR");
+        btRegresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btRegresarActionPerformed(evt);
             }
         });
 
@@ -76,7 +77,7 @@ public class ListaTelefonoVista extends javax.swing.JFrame {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 698, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(303, 303, 303)
-                        .addComponent(jButton1)))
+                        .addComponent(btRegresar)))
                 .addGap(15, 15, 15))
         );
         layout.setVerticalGroup(
@@ -85,18 +86,18 @@ public class ListaTelefonoVista extends javax.swing.JFrame {
                 .addGap(15, 15, 15)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(11, 11, 11)
-                .addComponent(jButton1)
+                .addComponent(btRegresar)
                 .addGap(15, 15, 15))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRegresarActionPerformed
         // TODO add your handling code here:
         vistaTelefono.setVisible(true);
         this.setVisible(false);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btRegresarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -135,7 +136,7 @@ public class ListaTelefonoVista extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btRegresar;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JList<String> lstTelefonos;
     // End of variables declaration//GEN-END:variables
