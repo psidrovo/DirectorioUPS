@@ -5,17 +5,20 @@
  */
 package ups.edu.ec.vista;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Paul Idrovo
  */
-public class NewJFrame extends javax.swing.JFrame {
+public class Telefono extends javax.swing.JFrame {
 
-    /**
-     * Creates new form NewJFrame
-     */
-    public NewJFrame() {
+    private ListaTelefono lisTelefono;
+
+    public Telefono() {
         initComponents();
+        this.setLocationRelativeTo(this);
+        this.setResizable(false);
     }
 
     /**
@@ -39,7 +42,8 @@ public class NewJFrame extends javax.swing.JFrame {
         txtOperadora = new javax.swing.JTextField();
         txtTipo = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setTitle("TELEFONO");
 
         jLabel1.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         jLabel1.setText("CODIGO:");
@@ -57,12 +61,27 @@ public class NewJFrame extends javax.swing.JFrame {
         txtCodigo.setMaximumSize(new java.awt.Dimension(150, 25));
         txtCodigo.setMinimumSize(new java.awt.Dimension(150, 25));
         txtCodigo.setPreferredSize(new java.awt.Dimension(150, 25));
+        txtCodigo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCodigoKeyTyped(evt);
+            }
+        });
 
         jButton1.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         jButton1.setText("CREAR");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         jButton2.setText("LISTAR");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jLabel5.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
         jLabel5.setText("                   TELEFONO");
@@ -71,6 +90,11 @@ public class NewJFrame extends javax.swing.JFrame {
         txtNumero.setMaximumSize(new java.awt.Dimension(150, 25));
         txtNumero.setMinimumSize(new java.awt.Dimension(150, 25));
         txtNumero.setPreferredSize(new java.awt.Dimension(150, 25));
+        txtNumero.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNumeroKeyTyped(evt);
+            }
+        });
 
         txtOperadora.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         txtOperadora.setMaximumSize(new java.awt.Dimension(150, 25));
@@ -152,6 +176,40 @@ public class NewJFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        if (lisTelefono == null) {
+            lisTelefono = new ListaTelefono(this);
+        }
+        lisTelefono.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        if (!txtCodigo.equals("") && !txtNumero.equals("") && !txtOperadora.equals("") && !txtTipo.equals("")) {
+            JOptionPane.showMessageDialog(null, "TELEFONO CREADO EXITOSAMENTE", "CREACION CORRECTA", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(null, "EXISTEN CAMPOS VACIOS", "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void txtCodigoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoKeyTyped
+        char validar = evt.getKeyChar();
+        if (!Character.isDigit(validar)) {
+            evt.consume();
+            JOptionPane.showMessageDialog(null, "INGRESE SOLO NUMEROS", "ERROR DE DATOS", JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_txtCodigoKeyTyped
+
+    private void txtNumeroKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNumeroKeyTyped
+        char validar = evt.getKeyChar();
+        if (!Character.isDigit(validar)) {
+            evt.consume();
+            JOptionPane.showMessageDialog(null, "INGRESE SOLO NUMEROS", "ERROR DE DATOS", JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_txtNumeroKeyTyped
+
     /**
      * @param args the command line arguments
      */
@@ -169,20 +227,21 @@ public class NewJFrame extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(NewJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Telefono.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(NewJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Telefono.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(NewJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Telefono.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(NewJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Telefono.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new NewJFrame().setVisible(true);
+                new Telefono().setVisible(true);
             }
         });
     }
