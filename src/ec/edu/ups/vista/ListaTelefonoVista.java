@@ -3,21 +3,35 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ups.edu.ec.vista;
+package ec.edu.ups.vista;
+
+import ec.edu.ups.controlador.ControladorTelefono;
+import ec.edu.ups.modelo.Telefono;
+import java.util.List;
 
 /**
  *
  * @author Paul Idrovo
  */
-public class ListaTelefono extends javax.swing.JFrame {
+public class ListaTelefonoVista extends javax.swing.JFrame {
 
-    private static Telefono vistaTelefono;
-    
-    public ListaTelefono(Telefono vsTelefono) {
-        vistaTelefono=vsTelefono;
+    private static TelefonoVista vistaTelefono;
+    private static ControladorTelefono controladorTelefono;
+
+    public ListaTelefonoVista(TelefonoVista vsTelefono, ControladorTelefono ctrlTelefono) {
+        controladorTelefono = ctrlTelefono;
+        vistaTelefono = vsTelefono;
         initComponents();
         this.setLocationRelativeTo(this);
         this.setResizable(false);
+        List<Telefono> tlf = controladorTelefono.verTelefonos();
+        String imp[] = new String[tlf.size()];
+        int i = 0;
+        for (Telefono verTelefono : tlf) {
+            imp[i] = verTelefono.toString();
+            i++;
+        }
+        lstTelefonos.setListData(imp);
     }
 
     /**
@@ -39,6 +53,8 @@ public class ListaTelefono extends javax.swing.JFrame {
         lstTelefonos.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "LISTA DE TELEFONOS", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Verdana", 1, 14))); // NOI18N
         lstTelefonos.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         lstTelefonos.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        lstTelefonos.setMaximumSize(new java.awt.Dimension(278, 250));
+        lstTelefonos.setMinimumSize(new java.awt.Dimension(278, 250));
         jScrollPane1.setViewportView(lstTelefonos);
 
         jButton1.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
@@ -54,10 +70,13 @@ public class ListaTelefono extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 456, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(15, 15, 15)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 698, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(303, 303, 303)
+                        .addComponent(jButton1)))
                 .addGap(15, 15, 15))
         );
         layout.setVerticalGroup(
@@ -65,7 +84,7 @@ public class ListaTelefono extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(15, 15, 15)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(15, 15, 15)
+                .addGap(11, 11, 11)
                 .addComponent(jButton1)
                 .addGap(15, 15, 15))
         );
@@ -96,20 +115,21 @@ public class ListaTelefono extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ListaTelefono.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ListaTelefonoVista.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ListaTelefono.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ListaTelefonoVista.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ListaTelefono.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ListaTelefonoVista.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ListaTelefono.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ListaTelefonoVista.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ListaTelefono(vistaTelefono).setVisible(true);
+                new ListaTelefonoVista(vistaTelefono, controladorTelefono).setVisible(true);
             }
         });
     }

@@ -3,8 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ups.edu.ec.vista;
+package ec.edu.ups.vista;
 
+import ec.edu.ups.controlador.ControladorTelefono;
+import ec.edu.ups.dao.TelefonoDao;
 import javax.swing.JOptionPane;
 
 /**
@@ -13,6 +15,9 @@ import javax.swing.JOptionPane;
  */
 public class VentanaPrincipal extends javax.swing.JFrame {
 
+    private static TelefonoDao DaoTlf = new TelefonoDao();
+    private static ControladorTelefono ctrlTelefono = new ControladorTelefono(DaoTlf);
+    
     public VentanaPrincipal() {
         initComponents();
         this.setLocationRelativeTo(this);
@@ -116,7 +121,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         }
         
         if(txtUsuario.getText().equals("admin")&&contraseñaDeco.equals("1234")){
-            Telefono vtTelefono = new Telefono();
+            TelefonoVista vtTelefono = new TelefonoVista(ctrlTelefono);
             vtTelefono.setVisible(true);
             this.setVisible(false);
         }else{
