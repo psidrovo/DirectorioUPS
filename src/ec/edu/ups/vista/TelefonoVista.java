@@ -16,8 +16,7 @@ import javax.swing.JOptionPane;
 public class TelefonoVista extends javax.swing.JFrame {
     
     private ListaTelefonoVista lisTelefono;
-    private static ControladorTelefono controladorTelefono;
-    private Telefono tlf = new Telefono();
+    private static ControladorTelefono controladorTelefono;    
     
     public TelefonoVista(ControladorTelefono ctrlTelefono) {
         controladorTelefono=ctrlTelefono;
@@ -188,6 +187,7 @@ public class TelefonoVista extends javax.swing.JFrame {
     private void btCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCrearActionPerformed
         // TODO add your handling code here:
         if (!txtCodigo.equals("") && !txtNumero.equals("") && !txtOperadora.equals("") && !txtTipo.equals("")) {            
+            Telefono tlf = new Telefono();
             tlf.setCodigo(Integer.valueOf(txtCodigo.getText()));
             tlf.setNumero(txtNumero.getText());
             tlf.setOperadora(txtOperadora.getText());

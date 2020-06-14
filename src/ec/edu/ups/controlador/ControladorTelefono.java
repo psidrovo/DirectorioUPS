@@ -86,8 +86,6 @@ public class ControladorTelefono {
      * Este metodo nos ayuda a imprimir la lista de telefonos.
      */
     public List<Telefono> verTelefonos() {
-        List<Telefono> telefonos;
-        telefonos = TDao.todosTelefonos();
-        return telefonos;
+        return TDao.todosTelefonos();
     }
 }
