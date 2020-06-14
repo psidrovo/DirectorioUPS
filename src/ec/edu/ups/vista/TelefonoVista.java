@@ -181,6 +181,7 @@ public class TelefonoVista extends javax.swing.JFrame {
             lisTelefono = new ListaTelefonoVista(this,controladorTelefono);
         }
         lisTelefono.setVisible(true);
+        lisTelefono.listar();
         this.setVisible(false);
     }//GEN-LAST:event_btListarActionPerformed
 

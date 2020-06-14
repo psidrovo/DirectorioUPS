@@ -24,7 +24,9 @@ public class ListaTelefonoVista extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(this);
         this.setResizable(false);
-        
+    }
+
+    public void listar() {
         List<Telefono> tlf = controladorTelefono.verTelefonos();
         String imp[] = new String[tlf.size()];
         int i = 0;
