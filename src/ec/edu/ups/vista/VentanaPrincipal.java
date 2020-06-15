@@ -15,11 +15,15 @@ import javax.swing.JOptionPane;
  */
 public class VentanaPrincipal extends javax.swing.JFrame {
 
-    private static TelefonoDao DaoTlf = new TelefonoDao();
-    private static ControladorTelefono ctrlTelefono = new ControladorTelefono(DaoTlf);
-    
+    private TelefonoDao daoTelefono;
+    private ControladorTelefono contrladorTelefono;
+    private TelefonoVista vistaTelefono;
+
     public VentanaPrincipal() {
         initComponents();
+        daoTelefono = new TelefonoDao();
+        contrladorTelefono = new ControladorTelefono(daoTelefono);
+        vistaTelefono = new TelefonoVista(contrladorTelefono);
         this.setLocationRelativeTo(this);
         this.setResizable(false);
     }
@@ -44,7 +48,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         setTitle("DIRECTORIO UPS");
         setBackground(new java.awt.Color(204, 204, 204));
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        setFocusableWindowState(false);
+        setFocusCycleRoot(false);
         setResizable(false);
 
         pswContraseña.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
@@ -125,12 +129,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         for (int x = 0; x < password.length; x++) {
             contraseñaDeco += password[x];
         }
-        
-        if(txtUsuario.getText().equals("admin")&&contraseñaDeco.equals("1234")){
-            TelefonoVista vtTelefono = new TelefonoVista(ctrlTelefono);
-            vtTelefono.setVisible(true);
+
+        if (txtUsuario.getText().equals("admin") && contraseñaDeco.equals("1234")) {
+            vistaTelefono.setVisible(true);
             this.setVisible(false);
-        }else{
+        } else {
             JOptionPane.showMessageDialog(null, "USUARIO Y/O CONTRASEÑA INCORRECTOS", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btIniciarActionPerformed
@@ -166,12 +169,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             javax.swing.UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
         } catch (Exception e) {
         }
-        
+
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new VentanaPrincipal().setVisible(true);
-                
+
             }
         });
     }

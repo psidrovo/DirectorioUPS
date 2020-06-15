@@ -8,6 +8,7 @@ package ec.edu.ups.vista;
 import ec.edu.ups.controlador.ControladorTelefono;
 import ec.edu.ups.modelo.Telefono;
 import java.util.List;
+import javax.swing.DefaultListModel;
 
 /**
  *
@@ -15,26 +16,25 @@ import java.util.List;
  */
 public class ListaTelefonoVista extends javax.swing.JFrame {
 
-    private static TelefonoVista vistaTelefono;
-    private static ControladorTelefono controladorTelefono;
+    private TelefonoVista vistaTelefono;
+    private ControladorTelefono controladorTelefono;
 
     public ListaTelefonoVista(TelefonoVista vsTelefono, ControladorTelefono ctrlTelefono) {
+        initComponents();
         controladorTelefono = ctrlTelefono;
         vistaTelefono = vsTelefono;
-        initComponents();
         this.setLocationRelativeTo(this);
         this.setResizable(false);
     }
 
     public void listar() {
-        List<Telefono> tlf = controladorTelefono.verTelefonos();
-        String imp[] = new String[tlf.size()];
-        int i = 0;
-        for (Telefono verTelefono : tlf) {
-            imp[i] = verTelefono.toString();
-            i++;
+        List<Telefono> listaTelefonos = controladorTelefono.verTelefonos();
+
+        DefaultListModel modelo = new DefaultListModel();
+        for (Telefono telefono : listaTelefonos) {
+            modelo.addElement(telefono.toString());
         }
-        lstTelefonos.setListData(imp);
+        lstTelefonos.setModel(modelo);
     }
 
     /**
@@ -49,6 +49,7 @@ public class ListaTelefonoVista extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         lstTelefonos = new javax.swing.JList<>();
         btRegresar = new javax.swing.JButton();
+        btRegresar1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("LISTA DE TELEFONOS");
@@ -68,6 +69,14 @@ public class ListaTelefonoVista extends javax.swing.JFrame {
             }
         });
 
+        btRegresar1.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        btRegresar1.setText("LISTAR");
+        btRegresar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btRegresar1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -78,7 +87,9 @@ public class ListaTelefonoVista extends javax.swing.JFrame {
                         .addGap(15, 15, 15)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 698, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(303, 303, 303)
+                        .addGap(234, 234, 234)
+                        .addComponent(btRegresar1, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btRegresar)))
                 .addGap(15, 15, 15))
         );
@@ -88,7 +99,9 @@ public class ListaTelefonoVista extends javax.swing.JFrame {
                 .addGap(15, 15, 15)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(11, 11, 11)
-                .addComponent(btRegresar)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btRegresar)
+                    .addComponent(btRegresar1))
                 .addGap(15, 15, 15))
         );
 
@@ -101,44 +114,13 @@ public class ListaTelefonoVista extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_btRegresarActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ListaTelefonoVista.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ListaTelefonoVista.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ListaTelefonoVista.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ListaTelefonoVista.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ListaTelefonoVista(vistaTelefono, controladorTelefono).setVisible(true);
-            }
-        });
-    }
+    private void btRegresar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRegresar1ActionPerformed
+        listar();
+    }//GEN-LAST:event_btRegresar1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btRegresar;
+    private javax.swing.JButton btRegresar1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JList<String> lstTelefonos;
     // End of variables declaration//GEN-END:variables

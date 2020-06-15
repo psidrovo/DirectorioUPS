@@ -14,13 +14,14 @@ import javax.swing.JOptionPane;
  * @author Paul Idrovo
  */
 public class TelefonoVista extends javax.swing.JFrame {
-    
-    private ListaTelefonoVista lisTelefono;
-    private static ControladorTelefono controladorTelefono;    
-    
+
+    private ListaTelefonoVista listaTelefono;
+    private ControladorTelefono controladorTelefono;
+
     public TelefonoVista(ControladorTelefono ctrlTelefono) {
-        controladorTelefono=ctrlTelefono;
         initComponents();
+        this.controladorTelefono = ctrlTelefono;
+        this.listaTelefono = new ListaTelefonoVista(this, controladorTelefono);
         this.setLocationRelativeTo(this);
         this.setResizable(false);
     }
@@ -176,24 +177,22 @@ public class TelefonoVista extends javax.swing.JFrame {
 
     private void btListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btListarActionPerformed
         // TODO add your handling code here:
-        if (lisTelefono == null) {
-            lisTelefono = new ListaTelefonoVista(this,controladorTelefono);
-        }
-        lisTelefono.setVisible(true);
-        lisTelefono.listar();
+        listaTelefono.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btListarActionPerformed
 
     private void btCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCrearActionPerformed
         // TODO add your handling code here:
-        if (!txtCodigo.equals("") && !txtNumero.equals("") && !txtOperadora.equals("") && !txtTipo.equals("")) {            
+        if (!txtCodigo.equals("") && !txtNumero.equals("") && !txtOperadora.equals("") && !txtTipo.equals("")) {
             Telefono tlf = new Telefono();
             tlf.setCodigo(Integer.valueOf(txtCodigo.getText()));
             tlf.setNumero(txtNumero.getText());
             tlf.setOperadora(txtOperadora.getText());
             tlf.setTipo(txtTipo.getText());
             controladorTelefono.crearNuevoTelefono(tlf);
+
             JOptionPane.showMessageDialog(null, "TELEFONO CREADO EXITOSAMENTE", "CREACION CORRECTA", JOptionPane.INFORMATION_MESSAGE);
+
             txtCodigo.setText("");
             txtNumero.setText("");
             txtOperadora.setText("");
@@ -219,43 +218,6 @@ public class TelefonoVista extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txtNumeroKeyTyped
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TelefonoVista.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TelefonoVista.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TelefonoVista.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TelefonoVista.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new TelefonoVista(controladorTelefono).setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btCrear;
