@@ -1,4 +1,3 @@
-
 package ec.edu.ups.controlador;
 
 import ec.edu.ups.dao.TelefonoDao;
@@ -6,62 +5,63 @@ import ec.edu.ups.modelo.Telefono;
 import java.util.List;
 
 /**
- * Clase ControladorTelefono. 
- * 
- * Esta clase manejara toda la informacion de los telefonos y ademas tendra acceso
- * a la lista de Telefonos registrados que le pertenece a cada Usuario.
- * 
+ * Clase ControladorTelefono.
+ *
+ * Esta clase manejara toda la informacion de los telefonos y ademas tendra
+ * acceso a la lista de Telefonos registrados que le pertenece a cada Usuario.
+ *
  * @author Paul Idrovo
  */
 public class ControladorTelefono {
 
-    private TelefonoDao TDao;
+    private TelefonoDao telefonoDao;
     private Telefono telefono;
-    
+
     public ControladorTelefono() {
     }
+
     /**
      * Constructor.
-     * 
+     *
      * Este constructor nos permite crear el controlador telefono y que disponga
      * de vistaTelefono y de TelefonoDao
-     * 
+     *
      * @param vistaT
-     * @param telefonoDao 
+     * @param telefonoDao
      */
     public ControladorTelefono(TelefonoDao telefonoDao) {
-        this.TDao=telefonoDao;
+        this.telefonoDao = telefonoDao;
     }
-    
+
     /**
      * Metodo crearNuevoTelefono.
-     * 
-     * Este metodo nos ayuda a crear un nuevo telefono y agregarlo
-     * a la lista general
-     * 
-     * @return 
+     *
+     * Este metodo nos ayuda a crear un nuevo telefono y agregarlo a la lista
+     * general
+     *
+     * @return
      */
     public void crearNuevoTelefono(Telefono tlf) {
         telefono = tlf;
-        TDao.create(telefono);
+        telefonoDao.create(telefono);
     }
 
     /**
      * Metodo verTelefono.
-     * 
+     *
      * Este metodo nos imprime el telefno con el codigo que le pasamos
-     * 
+     *
      */
     public void verTelefono() {
-        
+
     }
 
     /**
      * Metodo actualizar.
-     * 
+     *
      * Este metodo lo que hace es actualizar nuestra lista de telefonos.
-     * 
-     * @return 
+     *
+     * @return
      */
     public int actualizar() {
         return 0;
@@ -70,10 +70,10 @@ public class ControladorTelefono {
 
     /**
      * Metodo eliminar.
-     * 
+     *
      * Este metodo es llamada para eliminar un telefono del directorio.
-     * 
-     * @return 
+     *
+     * @return
      */
     public int eliminar() {
         return 0;
@@ -82,10 +82,10 @@ public class ControladorTelefono {
 
     /**
      * Metodo verTelefonos.
-     * 
+     *
      * Este metodo nos ayuda a imprimir la lista de telefonos.
      */
     public List<Telefono> verTelefonos() {
-        return TDao.todosTelefonos();
+        return telefonoDao.todosTelefonos();
     }
 }
